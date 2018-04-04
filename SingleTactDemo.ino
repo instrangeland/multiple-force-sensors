@@ -18,12 +18,22 @@
  * 
  * September 2016
  * ----------------------------------------------------------------------------- */
+//Maybe add scheduler?
+//https://www.pjrc.com/teensy/td_libs_AltSoftSerial.html
+//https://www.mathworks.com/help/supportpkg/arduino/ug/use-serial-communications-with-arduino-hardware.html?requestedDomain=true
+#include <StopWatch.h>
 
+StopWatch timeStamp;
+
+bool stopwatchRunning=0; 
 
 #include <Wire.h> //For I2C/SMBus
-
+const byte ledPin = 13;
 void setup()
 {
+  pinMode(interruptPin, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(interruptPin), sendInfo, CHANGE);
+  byte arduino_Number=1; // change for each arduino
   Wire.begin(); // join i2c bus (address optional for master)
   //TWBR = 12; //Increase i2c speed if you have Arduino MEGA2560, not suitable for Arduino UNO
   Serial.begin(57600);  // start serial for output
@@ -37,16 +47,36 @@ void setup()
   Serial.println("----------------------------------------");	
 }
 
-void loop()
+void sendInfo()
 {
+  if (serialRunning==1)
+  {
+    
+  }
+   if (stopwatchRunning==0)
+ {
+    stopwatchRunning=1;
+    timeStamp.start();
+ }
     byte i2cAddress = 0x04; // Slave address (SingleTact), default 0x04
     short data = readDataFromSensor(i2cAddress);
-    Serial.print("I2C Sensor Data:");
-    Serial.print(data);    
-    Serial.print("\n");
-    delay(100); // Change this if you are getting values too quickly 
+    Serial.print(timeStamp.Elapsed());
+    Serial.print(arduino_Number);
+    Serial.println(data);     
 }
-
+void loop()
+{
+ 
+    
+   
+}
+void serialEvent()
+{
+ int serialRunning=1 
+ int availableSerial.availableForWrite()
+ while(
+ serialRunning=0
+}
 
 short readDataFromSensor(short address)
 {
