@@ -29,6 +29,7 @@ bool stopwatchRunning=0;
 
 #include <Wire.h> //For I2C/SMBus
 const byte ledPin = 13;
+const byte interruptPin = 13;
 void setup()
 {
   pinMode(interruptPin, INPUT_PULLUP);
