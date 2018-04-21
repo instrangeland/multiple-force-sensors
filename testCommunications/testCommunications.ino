@@ -7,7 +7,7 @@ int nextBuffer = 1;
 int nextReadBuffer = 0;
 const byte ledPin = 13;
 int tempBuffer[2];
-byte arduino_Number = 1; // change for each arduino
+byte arduino_Number = 2; // change for each arduino
 void setup()
 {
   pinMode(interruptPin, INPUT_PULLUP);
@@ -56,11 +56,12 @@ void loop()
   {
     addToBuffer(Serial.read());
   }
+  Serial.write(nextBuffer);
   sendInfo();
   readBuffer();
   if (tempBuffer[2] = 0)
   {
-    Serial.print(tempBuffer[1]);
+    Serial.write(tempBuffer[1]);
   }
 }
 
