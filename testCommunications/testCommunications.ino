@@ -57,9 +57,10 @@ void loop()
     addToBuffer(Serial.read());
   }
   sendInfo();
+  readBuffer();
   if (tempBuffer[2] = 0)
   {
-    Serial.write(tempBuffer[1]);
+    Serial.print(tempBuffer[1]);
   }
 }
 
