@@ -1,3 +1,5 @@
+#include <Wire.h>
+
 int buffer[10];
 const byte interruptPin = 13;
 bool stopwatchRunning = 0;
@@ -46,7 +48,7 @@ void addToBuffer( int number )
 }
 void sendInfo()
 {
-  addToBuffer(Arduino_Number);
+  addToBuffer(arduino_Number);
 }
 void loop()
 {
@@ -57,7 +59,7 @@ void loop()
   sendInfo();
   if (tempBuffer[2] = 0)
   {
-    serial.write(tempBuffer[1]);
+    Serial.write(tempBuffer[1]);
   }
 }
 
