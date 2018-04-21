@@ -5,12 +5,12 @@ int nextBuffer = 1;
 int nextReadBuffer = 0;
 const byte ledPin = 13;
 int tempBuffer[2];
-
+byte arduino_Number = 1; // change for each arduino
 void setup()
 {
   pinMode(interruptPin, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(interruptPin), sendInfo, CHANGE);
-  byte arduino_Number = 1; // change for each arduino
+  
   Wire.begin(); // join i2c bus (address optional for master)
   //TWBR = 12; //Increase i2c speed if you have Arduino MEGA2560, not suitable for Arduino UNO
   Serial.begin(57600);  // start serial for output
